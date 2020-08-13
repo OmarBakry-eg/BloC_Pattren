@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:bloc_pattern/blocs/bloc_cubit.dart';
+import 'package:bloc_pattern/blocs/cubit/bloc_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterScreen extends StatelessWidget {
-  static const routeName = '/counter_app';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,15 +22,26 @@ class CounterScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     FloatingActionButton(
+                      heroTag: 'fas',
                       onPressed: () => context.bloc<CounterCubit>().increment(),
                       child: Icon(Icons.add),
                     ),
                     context.bloc<CounterCubit>().changeUi(),
                     FloatingActionButton(
+                      heroTag: 'da',
                       onPressed: () => context.bloc<CounterCubit>().decrement(),
                       child: Icon(Icons.minimize),
                     )
                   ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Back'),
                 ),
               ],
             );
